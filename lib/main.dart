@@ -14,6 +14,14 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
+  var displayText = 'Some Text';
+
+  _changeText() {
+    setState(() {
+      displayText = displayText == 'Some Text' ? 'Other Text' : 'Some Text';
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -21,12 +29,20 @@ class _AppState extends State<App> {
         appBar: AppBar(
           title: const Text('First Assignment'),
         ),
-        body: const SizedBox(
-          width: double.infinity,
-          child: Text(
-            'Some Text',
-            textAlign: TextAlign.center,
-          ),
+        body: Column(
+          children: [
+            SizedBox(
+              width: double.infinity,
+              child: Text(
+                displayText,
+                textAlign: TextAlign.center,
+              ),
+            ),
+            ElevatedButton(
+              onPressed: _changeText,
+              child: const Text('Change Text'),
+            )
+          ],
         ),
       ),
     );
