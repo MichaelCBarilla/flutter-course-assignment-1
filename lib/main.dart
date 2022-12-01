@@ -4,6 +4,9 @@
 
 import 'package:flutter/material.dart';
 
+import './text_control.dart';
+import './my_text.dart';
+
 void main() => runApp(const App());
 
 class App extends StatefulWidget {
@@ -14,11 +17,11 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-  var displayText = 'Some Text';
+  var _displayText = 'Some Text';
 
   _changeText() {
     setState(() {
-      displayText = displayText == 'Some Text' ? 'Other Text' : 'Some Text';
+      _displayText = _displayText == 'Some Text' ? 'Other Text' : 'Some Text';
     });
   }
 
@@ -31,17 +34,8 @@ class _AppState extends State<App> {
         ),
         body: Column(
           children: [
-            SizedBox(
-              width: double.infinity,
-              child: Text(
-                displayText,
-                textAlign: TextAlign.center,
-              ),
-            ),
-            ElevatedButton(
-              onPressed: _changeText,
-              child: const Text('Change Text'),
-            )
+            MyText(displayText: _displayText),
+            TextControl(changeText: _changeText)
           ],
         ),
       ),
